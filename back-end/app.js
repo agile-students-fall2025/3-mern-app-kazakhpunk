@@ -78,5 +78,33 @@ app.post('/messages/save', async (req, res) => {
   }
 })
 
-// export the express app we created to make it available to other modules
-module.exports = app // CommonJS export style!
+// a route to handle fetching About Us page data
+app.get('/about', async (req, res) => {
+  try {
+    const aboutData = {
+      name: "Nursultan Sagyntay",
+      bio: "I am an aspiring software developer currently studying Computer Science with a focus on full-stack web development. I enjoy working with modern technologies like React, Node.js, and MongoDB to create meaningful applications.",
+      education: "B.S. in Computer Science at NYU",
+      interests: "I like to travel, watch MMA and do film photography",
+      imageUrl: "https://pub-3640bff143cf4554a6b6084410071a86.r2.dev/photos/me.jpg",
+      skills: ["JavaScript", "TypeScript", "Next.js", "React", "Node.js", "MongoDB", "FastAPI"],
+      contact: {
+        email: "ns5745@nyu.edu",
+        github: "https://github.com/kazakhpunk"
+      }
+    }
+    
+    res.json({
+      about: aboutData,
+      status: 'all good',
+    })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to retrieve about data',
+    })
+  }
+})
+
+  module.exports = app 
