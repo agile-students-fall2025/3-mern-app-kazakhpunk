@@ -9,7 +9,7 @@ const About = props => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND_URL}/about`)
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/about`)
       .then(response => {
         setAboutData(response.data.about)
         console.log(response.data.about.imageUrl)
